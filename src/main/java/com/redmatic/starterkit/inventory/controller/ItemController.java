@@ -29,4 +29,9 @@ public class ItemController {
         ItemRequest request = new ObjectMapper().readValue(itemJson, ItemRequest.class);
         return ResponseEntity.ok(itemService.addItem(request, image));
     }
+
+    @GetMapping
+    public ResponseEntity<List<ItemResponse>> getItems() {
+        return ResponseEntity.ok(itemService.getAllItems());
+    }
 }
