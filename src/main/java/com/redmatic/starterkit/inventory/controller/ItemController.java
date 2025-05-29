@@ -2,6 +2,7 @@ package com.redmatic.starterkit.inventory.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.redmatic.starterkit.constants.ApiURI;
 import com.redmatic.starterkit.constants.AppConstants;
 import com.redmatic.starterkit.inventory.dto.ItemRequest;
 import com.redmatic.starterkit.inventory.dto.ItemResponse;
@@ -15,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping(AppConstants.API_BASE_PATH + "items")
+@RequestMapping(ApiURI.API_BASE_PATH + "items")
 @RequiredArgsConstructor
 public class ItemController {
 

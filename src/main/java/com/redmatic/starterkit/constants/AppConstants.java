@@ -1,12 +1,6 @@
 package com.redmatic.starterkit.constants;
 
 public class AppConstants {
-
-    // API
-    public static final String API_BASE_PATH = "/api";
-    public static final String BASE_AUTH = "/api/auth";
-    public static final String LOGIN = "/login";
-    public static final String REGISTER = "/register";
     // Security
     public static final String[] SWAGGER_WHITELIST = {
             "/v3/api-docs/**",
