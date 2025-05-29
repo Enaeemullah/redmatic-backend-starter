@@ -1,6 +1,6 @@
 package com.redmatic.starterkit.auth.exception;
 
-import com.redmatic.starterkit.core.exception.ApiCode;
+import com.redmatic.starterkit.constants.ApiCode;
 import com.redmatic.starterkit.core.exception.BaseException;
 
 public class AuthException extends BaseException {

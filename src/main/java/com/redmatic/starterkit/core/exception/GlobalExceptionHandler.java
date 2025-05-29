@@ -1,5 +1,6 @@
 package com.redmatic.starterkit.core.exception;
 
+import com.redmatic.starterkit.constants.ApiCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

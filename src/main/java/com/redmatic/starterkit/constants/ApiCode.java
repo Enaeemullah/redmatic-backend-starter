@@ -1,17 +1,21 @@
-package com.redmatic.starterkit.core.exception;
+package com.redmatic.starterkit.constants;
 
 import lombok.Getter;
 
 @Getter
 public enum ApiCode {
 
-    // Common
+    // ✅ Common
+    SUCCESS("S0000", "Success"),
     INTERNAL_ERROR("S0001", "Internal server error"),
     INVALID_REQUEST("S0002", "Invalid request"),
 
-    // Auth
+    // ✅ Auth
     INVALID_CREDENTIALS("A0001", "Invalid username or password"),
-    USER_ALREADY_EXISTS("A0002", "User already exists");
+    USER_ALREADY_EXISTS("A0002", "User already exists"),
+
+    // ✅ Organization
+    ORG_CODE_EXISTS("ORG001", "Organization code already exists");
 
     private final String code;
     private final String message;

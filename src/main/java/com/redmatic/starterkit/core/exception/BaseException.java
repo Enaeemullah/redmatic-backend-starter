@@ -1,5 +1,7 @@
 package com.redmatic.starterkit.core.exception;
 
+import com.redmatic.starterkit.constants.ApiCode;
+
 public class BaseException extends RuntimeException {
 
     private final ApiCode code;

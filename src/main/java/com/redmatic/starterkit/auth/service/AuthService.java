@@ -5,7 +5,7 @@ import com.redmatic.starterkit.auth.dto.AuthResponse;
 import com.redmatic.starterkit.auth.entity.User;
 import com.redmatic.starterkit.auth.exception.AuthException;
 import com.redmatic.starterkit.auth.repository.UserRepository;
-import com.redmatic.starterkit.core.exception.ApiCode;
+import com.redmatic.starterkit.constants.ApiCode;
 import com.redmatic.starterkit.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,12 +41,12 @@ public class AuthService {
     }
 
     public void registerUser(String username, String rawPassword) {
-        if (userRepository.existsByUsername(username)) {
+        if (userRepository.existsByEmail(username)) {
             throw new AuthException(ApiCode.USER_ALREADY_EXISTS);
         }
 
         User user = User.builder()
-                .username(username)
+                .email(username)
                 .password(passwordEncoder.encode(rawPassword))
                 .build();
 

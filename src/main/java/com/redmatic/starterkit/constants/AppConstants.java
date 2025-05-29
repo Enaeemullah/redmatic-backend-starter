@@ -3,6 +3,7 @@ package com.redmatic.starterkit.constants;
 public class AppConstants {
     // Security
     public static final String[] SWAGGER_WHITELIST = {
+            "/api/v1/organization/signup",
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/swagger-ui.html",
