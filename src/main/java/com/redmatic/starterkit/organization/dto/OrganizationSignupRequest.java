@@ -6,10 +6,10 @@ import lombok.Data;
 @Data
 public class OrganizationSignupRequest {
     @NotBlank
-    private String organizationName;
+    private String orga_desc;
 
     @NotBlank
-    private String porOrgacode;
+    private String orga_code;
 
     @NotBlank
     private String firstName;

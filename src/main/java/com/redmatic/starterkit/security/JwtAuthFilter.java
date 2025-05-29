@@ -29,7 +29,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             "/swagger-ui/**",
             "/swagger-ui.html",
             "/api/auth/**",
-            "/api/health"
+            "/api/health",
+            "/api/v1/organization/signup"
     );
 
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
@@ -37,7 +38,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String path = request.getServletPath();
-        return PUBLIC_ENDPOINTS.stream().anyMatch(p -> pathMatcher.match(p, path));
+        boolean shouldSkip = PUBLIC_ENDPOINTS.stream().anyMatch(p -> pathMatcher.match(p, path));
+        System.out.println("JwtAuthFilter: shouldNotFilter -> " + path + " = " + shouldSkip);
+        return shouldSkip;
     }
 
     @Override

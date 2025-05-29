@@ -25,15 +25,15 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Transactional
     @Override
     public void signupWithAdmin(OrganizationSignupRequest request) {
-        if (organizationRepository.existsByOrgaCode(request.getPorOrgacode())) {
+        if (organizationRepository.existsByOrgaCode(request.getOrga_code())) {
             throw new BaseException(ApiCode.ORG_CODE_EXISTS);
         }
 
         // Save Organization
         Organization organization = organizationRepository.save(
                 Organization.builder()
-                        .orgaCode(request.getPorOrgacode())
-                        .orgaDesc(request.getOrganizationName())
+                        .orgaCode(request.getOrga_code())
+                        .orgaDesc(request.getOrga_desc())
                         .build()
         );
 
