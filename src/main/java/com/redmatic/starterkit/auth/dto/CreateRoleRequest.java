@@ -14,5 +14,5 @@ import java.util.List;
 public class CreateRoleRequest {
     private String name;
     private String description;
-    private List<Long> permissionIds; // from selected checkboxes
+    private List<Long> permissionIds;
 }

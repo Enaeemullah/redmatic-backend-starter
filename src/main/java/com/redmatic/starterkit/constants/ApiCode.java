@@ -13,9 +13,14 @@ public enum ApiCode {
     // ✅ Auth
     INVALID_CREDENTIALS("A0001", "Invalid username or password"),
     USER_ALREADY_EXISTS("A0002", "User already exists"),
+    MODULE_EXISTS("M1001", "Module already exists"),
+    MODULE_NOT_FOUND("S1001", "Module not found"),
+    ACTION_NOT_FOUND("S1002", "Action not found"),
+    PERMISSION_EXISTS("S1003", "Permission already exists"),
 
     // ✅ Organization
-    ORG_CODE_EXISTS("ORG001", "Organization code already exists");
+    ORG_CODE_EXISTS("ORG001", "Organization code already exists"),
+    ACTION_EXISTS("ORG002", "Action already exists" ),;
 
     private final String code;
     private final String message;

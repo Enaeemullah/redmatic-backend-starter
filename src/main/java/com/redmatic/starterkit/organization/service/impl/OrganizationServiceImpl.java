@@ -1,4 +1,4 @@
-package com.redmatic.starterkit.organization.service;
+package com.redmatic.starterkit.organization.service.impl;
 
 import com.redmatic.starterkit.auth.entity.Role;
 import com.redmatic.starterkit.auth.entity.User;
@@ -9,6 +9,7 @@ import com.redmatic.starterkit.core.exception.BaseException;
 import com.redmatic.starterkit.organization.dto.OrganizationSignupRequest;
 import com.redmatic.starterkit.organization.entity.Organization;
 import com.redmatic.starterkit.organization.repository.OrganizationRepository;
+import com.redmatic.starterkit.organization.service.OrganizationService;
 import com.redmatic.starterkit.util.PasswordUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
