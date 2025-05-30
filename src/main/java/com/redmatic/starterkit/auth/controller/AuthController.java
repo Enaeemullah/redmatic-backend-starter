@@ -23,7 +23,7 @@ public class AuthController {
 
     @PostMapping(ApiURI.REGISTER)
     public ResponseEntity<String> register(@RequestBody LoginRequest request) {
-        authService.registerUser(request.getUsername(), request.getPassword());
+        authService.registerUser(request.getEmail(), request.getPassword());
         return ResponseEntity.ok("User registered successfully!");
     }
 }

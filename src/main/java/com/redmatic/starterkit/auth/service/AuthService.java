@@ -6,6 +6,7 @@ import com.redmatic.starterkit.auth.entity.User;
 import com.redmatic.starterkit.auth.exception.AuthException;
 import com.redmatic.starterkit.auth.repository.UserRepository;
 import com.redmatic.starterkit.constants.ApiCode;
+import com.redmatic.starterkit.core.exception.BaseException;
 import com.redmatic.starterkit.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,19 +26,16 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
 
     public AuthResponse authenticate(LoginRequest request) {
-        log.info("Authenticating user: {}", request.getUsername());
-        // Spring Security auth
-        var authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
-        );
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new BaseException(ApiCode.INVALID_CREDENTIALS));
 
-        // Generate token
-        String token = tokenProvider.generateToken(authentication.getName());
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new BaseException(ApiCode.INVALID_CREDENTIALS);
+        }
 
-        return AuthResponse.builder()
-                .username(authentication.getName())
-                .token(token)
-                .build();
+        String token = tokenProvider.generateToken(user.getEmail());
+
+        return new AuthResponse(token, user.getRole().getName(), user.getOrganization().getOrgaCode());
     }
 
     public void registerUser(String username, String rawPassword) {
