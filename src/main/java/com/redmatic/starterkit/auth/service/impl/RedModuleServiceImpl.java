@@ -23,7 +23,6 @@ public class RedModuleServiceImpl implements RedModuleService {
 
         RedModule module = RedModule.builder()
                 .name(request.getName())
-                .description(request.getDescription())
                 .build();
         moduleRepository.save(module);
     }

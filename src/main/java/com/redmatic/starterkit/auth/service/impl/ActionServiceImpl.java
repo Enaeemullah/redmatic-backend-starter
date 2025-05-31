@@ -23,7 +23,6 @@ public class ActionServiceImpl implements ActionService {
 
         Action action = Action.builder()
                 .name(request.getName())
-                .description(request.getDescription())
                 .build();
         actionRepository.save(action);
     }

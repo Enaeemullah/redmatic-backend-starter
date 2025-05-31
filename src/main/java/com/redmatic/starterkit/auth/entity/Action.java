@@ -18,5 +18,4 @@ public class Action {
     @Column(unique = true, nullable = false)
     private String name;
 
-    private String description;
 }

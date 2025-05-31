@@ -17,6 +17,7 @@ public enum ApiCode {
     MODULE_NOT_FOUND("S1001", "Module not found"),
     ACTION_NOT_FOUND("S1002", "Action not found"),
     PERMISSION_EXISTS("S1003", "Permission already exists"),
+    ROLE_NOT_FOUND("S1004", "Role not found"),
 
     // ✅ Organization
     ORG_CODE_EXISTS("ORG001", "Organization code already exists"),
