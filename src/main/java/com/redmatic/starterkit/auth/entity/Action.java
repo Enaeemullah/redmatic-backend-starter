@@ -5,17 +5,22 @@ import lombok.*;
 
 @Entity
 @Table(name = "actions")
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Action {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
     private String name;
+    private String module;
+    private String description;
 
+    private boolean createPermission;
+    private boolean readPermission;
+    private boolean updatePermission;
+    private boolean deletePermission;
 }

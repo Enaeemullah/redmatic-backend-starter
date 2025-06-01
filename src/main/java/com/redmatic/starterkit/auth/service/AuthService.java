@@ -35,7 +35,7 @@ public class AuthService {
 
         String token = tokenProvider.generateToken(user.getEmail());
 
-        return new AuthResponse(token, user.getRole().getName(), user.getOrganization().getOrgaCode());
+        return new AuthResponse(token, user.getRole().getName(), user.getOrganization().getOrgaCode(), user.getFirstName(), user.getEmail());
     }
 
     public void registerUser(String username, String rawPassword) {

@@ -14,6 +14,8 @@ public class AuthResponse {
     private String token;
     private String role;
     private String orga_code;
+    private String firstName;
+    private String email;
 
 }
 

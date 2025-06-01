@@ -21,7 +21,11 @@ public enum ApiCode {
 
     // ✅ Organization
     ORG_CODE_EXISTS("ORG001", "Organization code already exists"),
-    ACTION_EXISTS("ORG002", "Action already exists" ),;
+    ACTION_EXISTS("ORG002", "Action already exists" ),
+    ORGANIZATION_CREATED("ORG003", "Organization and admin created successfully"),
+
+    USER_EMAIL_ALREADY_EXISTS("USR001", "Email already exists"),
+    USER_PHONE_ALREADY_EXISTS("USR002", "Phone number already exists");
 
     private final String code;
     private final String message;

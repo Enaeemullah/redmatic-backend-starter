@@ -4,6 +4,11 @@ import lombok.Data;
 
 @Data
 public class ActionRequest {
-    String name;
-    String description;
+    private String name;           // e.g., "Manager"
+    private String module;         // e.g., "Inventory"
+    private String description;    // e.g., "Inventory Management"
+    private boolean create;
+    private boolean read;
+    private boolean update;
+    private boolean delete;
 }

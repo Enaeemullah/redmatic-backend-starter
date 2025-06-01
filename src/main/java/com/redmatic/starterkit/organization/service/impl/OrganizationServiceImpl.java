@@ -32,6 +32,14 @@ public class OrganizationServiceImpl implements OrganizationService {
             throw new BaseException(ApiCode.ORG_CODE_EXISTS);
         }
 
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new BaseException(ApiCode.USER_EMAIL_ALREADY_EXISTS);
+        }
+
+        if (userRepository.existsByPhoneNo(request.getPhoneNo())) {
+            throw new BaseException(ApiCode.USER_PHONE_ALREADY_EXISTS);
+        }
+
         // Save Organization
         Organization organization = organizationRepository.save(
                 Organization.builder()
@@ -42,9 +50,16 @@ public class OrganizationServiceImpl implements OrganizationService {
                         .build()
         );
 
-        // Get Admin Role
         Role adminRole = roleRepository.findByName("ROLE_ADMIN")
-                .orElseThrow(() -> new BaseException(ApiCode.INVALID_REQUEST)); // You can define a better code here
+                .orElseGet(() -> {
+                    Role role = Role.builder()
+                            .name("ROLE_ADMIN")
+                            .description("Organization Admin")
+                            .createdAt(LocalDateTime.now())
+                            .updatedAt(LocalDateTime.now())
+                            .build();
+                    return roleRepository.save(role);
+                });
 
         // Save Admin User
         userRepository.save(User.builder()

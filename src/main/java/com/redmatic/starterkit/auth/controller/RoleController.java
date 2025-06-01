@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/roles")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class RoleController {
 
     private final RoleService roleService;
 
-    @PostMapping
+    @PostMapping("/roles")
     public ResponseEntity<String> createRole(@RequestBody CreateRoleRequest request) {
         roleService.createRoleWithPermissions(request);
         return ResponseEntity.ok("Role created successfully with permissions");
