@@ -3,14 +3,16 @@ package com.redmatic.starterkit.inventory.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "categories")
+@Table(name = "brands")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Category {
+public class Brand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,5 +23,13 @@ public class Category {
 
     private String description;
 
+    @Column(nullable = false)
     private String status;
+
+    private Boolean isActive = true;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
 }

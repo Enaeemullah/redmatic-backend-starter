@@ -2,13 +2,10 @@ package com.redmatic.starterkit.inventory.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Builder
-public class CategoryResponse {
+public class CategoryResponseDTO {
     private Long id;
-    private String title;
+    private String name;
     private String description;
 }

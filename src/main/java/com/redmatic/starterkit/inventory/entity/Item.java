@@ -38,7 +38,9 @@ public class Item {
 
     private String unit;
 
-    private String brand;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
 
     private String imageUrl;
 

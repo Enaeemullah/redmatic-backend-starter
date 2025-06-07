@@ -37,7 +37,21 @@ public class ApiURI {
     public static final String UPDATE_SUPPLIER_GET_BY_ID = SUPPLIER + SUPPLIER_ID + "/edit";
     public static final String DELETE_SUPPLIER_ITEM_GET_BY_ID = SUPPLIER + SUPPLIER_ID + "/delete";
 
+    // Brand
+    public static final String BRANDS = "/brands";
+    private static final String BRANDS_ID = "/{id}";
+    public static final String GET_ALL_BRANDS = BRANDS;
+    public static final String CREATE_BRANDS = BRANDS + "/create";
+    public static final String UPDATE_BRANDS_GET_BY_ID = BRANDS + BRANDS_ID + "/edit";
+    public static final String DELETE_BRANDS_ITEM_GET_BY_ID = BRANDS + BRANDS_ID + "/delete";
 
+    // Category
+    public static final String CATEGORIES = "/categories";
+    private static final String CATEGORIES_ID = "/{id}";
+    public static final String GET_ALL_CATEGORIES = CATEGORIES;
+    public static final String CREATE_CATEGORIES = CATEGORIES + "/create";
+    public static final String UPDATE_CATEGORIES_GET_BY_ID = CATEGORIES + CATEGORIES_ID + "/edit";
+    public static final String DELETE_CATEGORIES_ITEM_GET_BY_ID = CATEGORIES + CATEGORIES_ID + "/delete";
     private ApiURI() {
         // prevent instantiation
     }

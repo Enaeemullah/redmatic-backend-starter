@@ -4,8 +4,10 @@ import com.redmatic.starterkit.core.exception.NotFoundException;
 import com.redmatic.starterkit.core.storage.MinioService;
 import com.redmatic.starterkit.inventory.dto.ItemRequest;
 import com.redmatic.starterkit.inventory.dto.ItemResponse;
+import com.redmatic.starterkit.inventory.entity.Brand;
 import com.redmatic.starterkit.inventory.entity.Category;
 import com.redmatic.starterkit.inventory.entity.Item;
+import com.redmatic.starterkit.inventory.repository.BrandRepository;
 import com.redmatic.starterkit.inventory.repository.CategoryRepository;
 import com.redmatic.starterkit.inventory.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.redmatic.starterkit.constants.ErrorMessages.BRAND_NOT_FOUND;
 import static com.redmatic.starterkit.constants.ErrorMessages.CATEGORY_NOT_FOUND;
 
 @Service
@@ -23,11 +26,15 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
+    private final BrandRepository brandRepository;
     private final MinioService minioService;
 
     public ItemResponse createItem(ItemRequest request) {
         Category category = categoryRepository.findById(request.getCategoryId())
                 .orElseThrow(() -> new NotFoundException(CATEGORY_NOT_FOUND));
+
+        Brand brand = brandRepository.findById(request.getBrandId())
+                .orElseThrow(() -> new NotFoundException(BRAND_NOT_FOUND));
 
         Item item = Item.builder()
                 .name(request.getName())
@@ -35,7 +42,7 @@ public class ItemService {
                 .sellingPrice(request.getSellingPrice())
                 .costPrice(request.getCostPrice())
                 .sku(request.getSku())
-                .brand(request.getBrand())
+                .brand(brand)
                 .description(request.getDescription())
                 .quantity(request.getQuantity() != null ? request.getQuantity() : 0) // Handle null quantity
                 .unit(request.getUnit())        // Added missing field
@@ -67,12 +74,16 @@ public class ItemService {
         Category category = categoryRepository.findById(request.getCategoryId())
                 .orElseThrow(() -> new NotFoundException("Category not found with ID: " + request.getCategoryId()));
 
+        Brand brand = brandRepository.findById(request.getBrandId())
+                .orElseThrow(() -> new NotFoundException(BRAND_NOT_FOUND));
+
+
         item.setName(request.getName());
         item.setBarcode(request.getBarcode());
         item.setSellingPrice(request.getSellingPrice());
         item.setCostPrice(request.getCostPrice());
         item.setSku(request.getSku());
-        item.setBrand(request.getBrand());
+        item.setBrand(brand);
         item.setDescription(request.getDescription());
         item.setQuantity(request.getQuantity() != null ? request.getQuantity() : 0);
         item.setUnit(request.getUnit());
@@ -98,9 +109,11 @@ public class ItemService {
                 .costPrice(item.getCostPrice())
                 .sku(item.getSku())
                 .description(item.getDescription())
+                .brandId(item.getBrand().getId())
+                .brandName(item.getBrand().getName())
                 .stockQuantity(item.getQuantity())
                 .categoryId(item.getCategory().getId())
-                .categoryTitle(item.getCategory().getTitle())
+                .categoryName(item.getCategory().getName())
                 .imageUrl(item.getImageUrl())
                 .build();
     }

@@ -11,10 +11,11 @@ public class ItemResponse {
     private Double sellingPrice;
     private Double costPrice;
     private String sku;
-    private String brand;
+    private Long brandId;
+    private String brandName;
     private String description;
     private Integer stockQuantity;
     private String imageUrl;
     private Long categoryId;
-    private String categoryTitle;
+    private String categoryName;
 }
