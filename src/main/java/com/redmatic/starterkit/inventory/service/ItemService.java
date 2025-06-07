@@ -25,25 +25,27 @@ public class ItemService {
     private final CategoryRepository categoryRepository;
     private final MinioService minioService;
 
-    public ItemResponse addItem(ItemRequest request, MultipartFile image) {
+    public ItemResponse createItem(ItemRequest request) {
         Category category = categoryRepository.findById(request.getCategoryId())
                 .orElseThrow(() -> new NotFoundException(CATEGORY_NOT_FOUND));
 
-        String imageUrl = image != null && !image.isEmpty() ? minioService.uploadFile(image) : null;
-
         Item item = Item.builder()
                 .name(request.getName())
+                .barcode(request.getBarcode())  // Added missing field
                 .sellingPrice(request.getSellingPrice())
                 .costPrice(request.getCostPrice())
                 .sku(request.getSku())
+                .brand(request.getBrand())
                 .description(request.getDescription())
-                .quantity(request.getStockQuantity())
+                .quantity(request.getQuantity() != null ? request.getQuantity() : 0) // Handle null quantity
+                .unit(request.getUnit())        // Added missing field
+                .reorderLevel(request.getReorderLevel()) // Map reorderPoint to reorderLevel
+                .isActive(true)                 // Default value
                 .category(category)
-                .imageUrl(imageUrl)
                 .build();
 
-        itemRepository.save(item);
-        return toResponse(item);
+        Item savedItem = itemRepository.save(item);
+        return toResponse(savedItem);
     }
 
     public List<ItemResponse> getAllItems() {
@@ -51,6 +53,42 @@ public class ItemService {
                 .map(this::toResponse)
                 .collect(Collectors.toList());
     }
+
+    public ItemResponse getItemById(Long id) {
+        Item item = itemRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Item with ID " + id + " not found"));
+        return toResponse(item);
+    }
+
+    public ItemResponse updateItemById(Long id, ItemRequest request) {
+        Item item = itemRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Item not found with ID: " + id));
+
+        Category category = categoryRepository.findById(request.getCategoryId())
+                .orElseThrow(() -> new NotFoundException("Category not found with ID: " + request.getCategoryId()));
+
+        item.setName(request.getName());
+        item.setBarcode(request.getBarcode());
+        item.setSellingPrice(request.getSellingPrice());
+        item.setCostPrice(request.getCostPrice());
+        item.setSku(request.getSku());
+        item.setBrand(request.getBrand());
+        item.setDescription(request.getDescription());
+        item.setQuantity(request.getQuantity() != null ? request.getQuantity() : 0);
+        item.setUnit(request.getUnit());
+        item.setReorderLevel(request.getReorderLevel());
+        item.setCategory(category);
+
+        Item updatedItem = itemRepository.save(item);
+        return toResponse(updatedItem);
+    }
+
+    public void deleteItemById(Long id) {
+        Item item = itemRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Item not found with ID: " + id));
+        itemRepository.delete(item);
+    }
+
 
     private ItemResponse toResponse(Item item) {
         return ItemResponse.builder()

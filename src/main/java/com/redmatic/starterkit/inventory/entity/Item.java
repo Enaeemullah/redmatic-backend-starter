@@ -38,6 +38,8 @@ public class Item {
 
     private String unit;
 
+    private String brand;
+
     private String imageUrl;
 
     private Boolean isActive = true;
