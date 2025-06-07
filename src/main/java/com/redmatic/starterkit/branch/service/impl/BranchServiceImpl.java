@@ -21,9 +21,13 @@ public class BranchServiceImpl implements BranchService {
     public BranchResponse createBranch(BranchRequest request) {
         Branch branch = Branch.builder()
                 .name(request.getName())
-                .type(request.getType())
-                .phone(request.getPhone())
                 .email(request.getEmail())
+                .phone(request.getPhone())
+                .country(request.getCountry())
+                .city(request.getCity())
+                .state(request.getState())
+                .code(request.getCode())
+                .zipCode(request.getZipCode())
                 .address(request.getAddress())
                 .build();
         Branch saved = branchRepository.save(branch);
@@ -50,7 +54,7 @@ public class BranchServiceImpl implements BranchService {
         Branch branch = branchRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Branch not found"));
         branch.setName(request.getName());
-        branch.setType(request.getType());
+        branch.d
         branch.setPhone(request.getPhone());
         branch.setEmail(request.getEmail());
         branch.setAddress(request.getAddress());
@@ -66,7 +70,11 @@ public class BranchServiceImpl implements BranchService {
         return BranchResponse.builder()
                 .id(branch.getId())
                 .name(branch.getName())
-                .type(branch.getType())
+                .city(branch.getCity())
+                .code(branch.getCode())
+                .state(branch.getState())
+                .zipCode(branch.getZipCode())
+                .country(branch.getCountry())
                 .phone(branch.getPhone())
                 .email(branch.getEmail())
                 .address(branch.getAddress())

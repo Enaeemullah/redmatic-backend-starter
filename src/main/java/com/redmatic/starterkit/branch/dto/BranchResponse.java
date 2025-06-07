@@ -10,9 +10,14 @@ import java.time.LocalDateTime;
 public class BranchResponse {
     private Long id;
     private String name;
-    private String type;
     private String phone;
     private String email;
     private String address;
+    private String city;
+    private String code;
+    private String status;
+    private String state;
+    private String zipCode;
+    private String country;
     private LocalDateTime createdAt;
 }

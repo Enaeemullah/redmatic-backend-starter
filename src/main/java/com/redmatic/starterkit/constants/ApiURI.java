@@ -52,6 +52,16 @@ public class ApiURI {
     public static final String CREATE_CATEGORIES = CATEGORIES + "/create";
     public static final String UPDATE_CATEGORIES_GET_BY_ID = CATEGORIES + CATEGORIES_ID + "/edit";
     public static final String DELETE_CATEGORIES_ITEM_GET_BY_ID = CATEGORIES + CATEGORIES_ID + "/delete";
+
+    //Branch
+    public static final String BRANCHES = "/branches";
+    private static final String BRANCHES_ID = "/{id}";
+    public static final String GET_ALL_BRANCHES = BRANCHES;
+    public static final String CREATE_BRANCHES = BRANCHES + "/create";
+    public static final String GET_BRANCH_GET_BY_ID = BRANCHES + BRANCHES_ID;
+    public static final String UPDATE_BRANCH_BY_ID = BRANCHES + BRANCHES_ID + "/edit";
+    public static final String DELETE_BRANCH_BY_ID = BRANCHES + BRANCHES_ID + "/delete";
+
     private ApiURI() {
         // prevent instantiation
     }

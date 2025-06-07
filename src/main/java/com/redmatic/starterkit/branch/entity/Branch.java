@@ -22,11 +22,15 @@ public class Branch {
 
     @Column(nullable = false)
     private String name;
-
-    private String type;
     private String phone;
     private String email;
     private String address;
+    private String city;
+    private String code;
+    private String status;
+    private String state;
+    private String zipCode;
+    private String country;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
