@@ -54,7 +54,12 @@ public class BranchServiceImpl implements BranchService {
         Branch branch = branchRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Branch not found"));
         branch.setName(request.getName());
-        branch.d
+        branch.setCity(request.getCity());
+        branch.setCode(request.getCode());
+        branch.setCountry(request.getCountry());
+        branch.setState(request.getState());
+        branch.setZipCode(request.getZipCode());
+        branch.setStatus(request.getStatus());
         branch.setPhone(request.getPhone());
         branch.setEmail(request.getEmail());
         branch.setAddress(request.getAddress());
