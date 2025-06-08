@@ -22,6 +22,7 @@ public class ApiURI {
     public static final String INVENTORY_ITEM_BASE = INVENTORY + "/items";
     public static final String INVENTORY_ITEM_GET_ALL = INVENTORY_ITEM;
     public static final String INVENTORY_ITEM_CREATE = INVENTORY_ITEM;
+    public static final String INVENTORY_STOCK_TRANSFER = "/transfers";
     public static final String GET_INVENTORY_ITEMS = INVENTORY_ITEM_BASE;
     public static final String INVENTORY_ITEM_GET_BY_ID = INVENTORY + INVENTORY_ID;
     public static final String UPDATE_INVENTORY_ITEM_GET_BY_ID = INVENTORY + INVENTORY_ID + "/edit";

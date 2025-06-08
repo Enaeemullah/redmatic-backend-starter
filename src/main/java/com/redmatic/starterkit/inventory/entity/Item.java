@@ -1,5 +1,6 @@
 package com.redmatic.starterkit.inventory.entity;
 
+import com.redmatic.starterkit.branch.entity.Branch;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,6 +38,10 @@ public class Item {
     private Integer reorderLevel;
 
     private String unit;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "branch_id")
+    private Branch branch;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")

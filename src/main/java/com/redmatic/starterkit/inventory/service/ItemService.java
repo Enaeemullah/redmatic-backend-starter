@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.redmatic.starterkit.constants.ErrorMessages.BRAND_NOT_FOUND;
@@ -109,11 +110,11 @@ public class ItemService {
                 .costPrice(item.getCostPrice())
                 .sku(item.getSku())
                 .description(item.getDescription())
-                .brandId(item.getBrand().getId())
-                .brandName(item.getBrand().getName())
+                .brandId(Optional.ofNullable(item.getBrand()).map(Brand::getId).orElse(null))
+                .brandName(Optional.ofNullable(item.getBrand()).map(Brand::getName).orElse(null))
                 .stockQuantity(item.getQuantity())
-                .categoryId(item.getCategory().getId())
-                .categoryName(item.getCategory().getName())
+                .categoryId(Optional.ofNullable(item.getCategory()).map(Category::getId).orElse(null))
+                .categoryName(Optional.ofNullable(item.getCategory()).map(Category::getName).orElse(null))
                 .imageUrl(item.getImageUrl())
                 .build();
     }
