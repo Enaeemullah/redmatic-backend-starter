@@ -9,7 +9,7 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.redmatic</groupId>
-	<artifactId>starterkit</artifactId>
+	<artifactId>autotab</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>starterkit</name>
 	<description>Spring Boot Starter Kit</description>
